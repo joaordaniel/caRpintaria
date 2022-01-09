@@ -13,7 +13,7 @@ output:
 ---
 
 
-Link: [**Listas de Candidatos - Legislativas 2022**](https://jrdaniel.shinyapps.io/paragrafo)
+Link: [**Listas de Candidatos - Legislativas 2022**](https://jrdaniel.shinyapps.io/listas_legislativas2022)
 
 
 *Listas de Candidatos extraídas dos ficheiros .pdf disponibilizados pela [Comissão Nacional de Eleições](https://www.cne.pt/content/eleicoes-para-assembleia-da-republica-2022)*
