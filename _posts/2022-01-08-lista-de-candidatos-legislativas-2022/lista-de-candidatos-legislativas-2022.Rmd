@@ -1,0 +1,27 @@
+---
+title: "Lista de candidatos - Legislativas 2022"
+categories:
+  - legislativas 2022
+description: |
+  Lista de candidatos às eleições legislativas de 2022, disponibilizadas no site da
+  Comissão Nacional de Eleições.
+author:
+  - name: JRDANIEL
+    url: https://example.com/norajones
+date: 2022-01-08
+draft: true
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+
