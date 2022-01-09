@@ -2,26 +2,18 @@
 title: "Lista de candidatos - Legislativas 2022"
 categories:
   - legislativas 2022
-description: |
-  Lista de candidatos às eleições legislativas de 2022, disponibilizadas no site da
-  Comissão Nacional de Eleições.
 author:
   - name: JRDANIEL
     url: https://www.linkedin.com/in/jo%C3%A3o-r-daniel-5a164a211
 date: 2022-01-08
-draft: true
+draft: false
 output:
   distill::distill_article:
     self_contained: false
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-Distill is a publication format for scientific and technical writing, native to the web.
-
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+Link: [**Listas de Candidatos - Legislativas 2022**](https://jrdaniel.shinyapps.io/paragrafo)
 
 
+*Listas de Candidatos extraídas dos ficheiros .pdf disponibilizados pela [Comissão Nacional de Eleições](https://www.cne.pt/content/eleicoes-para-assembleia-da-republica-2022)*

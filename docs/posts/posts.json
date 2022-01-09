@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "path": "posts/2022-01-08-lista-de-candidatos-legislativas-2022/",
+    "title": "Lista de candidatos - Legislativas 2022",
+    "description": {},
+    "author": [
+      {
+        "name": "JRDANIEL",
+        "url": "https://www.linkedin.com/in/jo%C3%A3o-r-daniel-5a164a211"
+      }
+    ],
+    "date": "2022-01-08",
+    "categories": [
+      "legislativas 2022"
+    ],
+    "contents": "\r\nLink: Listas de Candidatos - Legislativas 2022\r\nListas de Candidatos extraídas dos ficheiros .pdf disponibilizados pela Comissão Nacional de Eleições\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-01-09T22:44:19+00:00",
+    "input_file": "lista-de-candidatos-legislativas-2022.knit.md"
+  }
+]
