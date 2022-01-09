@@ -7,7 +7,7 @@ description: |
   Comissão Nacional de Eleições.
 author:
   - name: JRDANIEL
-    url: https://example.com/norajones
+    url: https://www.linkedin.com/in/jo%C3%A3o-r-daniel-5a164a211
 date: 2022-01-08
 draft: true
 output:

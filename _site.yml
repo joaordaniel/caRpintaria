@@ -21,8 +21,6 @@ navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
     - icon: fa fa-rss
       href: index.xml
   logo:
