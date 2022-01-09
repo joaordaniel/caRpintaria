@@ -1,5 +1,7 @@
 ---
 title: "Lista de candidatos - Legislativas 2022"
+description: |
+  Base de dados - listas legislativas 2022.
 categories:
   - legislativas 2022
 author:
