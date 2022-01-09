@@ -6,21 +6,21 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-09T00:50:49+00:00"
+      "last_modified": "2022-01-09T00:57:07+00:00"
     },
     {
       "path": "gallery.html",
       "title": "Highlights",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-09T00:50:51+00:00"
+      "last_modified": "2022-01-09T00:57:07+00:00"
     },
     {
       "path": "index.html",
       "title": "caRpintaria",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-09T00:50:52+00:00"
+      "last_modified": "2022-01-09T00:57:08+00:00"
     }
   ],
   "collections": ["posts/posts.json"]
