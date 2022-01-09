@@ -6,7 +6,7 @@ base_url: https://joaordaniel.github.io/caRpintaria/
 output_dir: "docs"
 collections:
   posts:
-    feed_items_max: 20
+    feed_items_max: 10
     categories: true
     categories_metadata: true
     authors_metadata: true
