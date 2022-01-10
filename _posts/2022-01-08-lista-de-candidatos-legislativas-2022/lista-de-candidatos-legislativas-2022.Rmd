@@ -6,7 +6,7 @@ categories:
   - legislativas 2022
 author:
   - name: JRDANIEL
-    url: https://www.linkedin.com/in/jo%C3%A3o-r-daniel-5a164a211
+    url: https://linktr.ee/j_r_daniel
 date: 2022-01-08
 draft: false
 output:
