@@ -52,7 +52,11 @@ print(data3_3, row.names = FALSE)
 ```
 
 ### E foi o Hondt que os...
+<<<<<<< HEAD
 Na prática para círculos eleitorais que elegem 3 deputados, o ***terceiro partido mais votado só elege 1 deputado se tiver uma votação que seja igual ou superior a metade dos 2 partidos mais votados***. Isto faz com que os partidos pequenos nestes círculos estejam muito longe dos lugares elegíveis (último lugar elegível ~20% com as [previsões actuais](https://twitter.com/intracampos?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor). Dado o panorama, somente em Évora o 3º deputado parece estar em disputa entre PS, PSD e PCP (com possibilidade de os 3 lugares ficarem distribuídos pelos 3 partidos).
+=======
+Na prática para círculos eleitorais que elegem 3 deputados, o ***terceiro partido mais votado só elege 1 deputado se tiver um votação que seja igual ou superior a metade dos 2 partidos mais votados***. Isto faz com que os partidos pequenos nestes círculos estejam muito longe dos lugares elegíveis (último lugar elegível ~20% com as [previsões actuais](https://twitter.com/intracampos?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor). Dado o panorama, somente em Évora o 3º deputado parece estar em disputa entre PS, PSD e PCP (com possibilidade de os 3 lugares ficarem distribuídos pelos 3 partidos).
+>>>>>>> e6fa3633fa6ed6f5472079f6f24c13665b455887
 
 Move o cursor por cima dos valores do gráfico para perceber como a combinação de valores dos dois partidos mais votados (x, y), condiciona a entrada de um terceiro partido (z) em círculos eleitorais com 3 deputados. As setas no gráfico apontam para os valores previstos para estes 4 círculos (o valor z indica o valor mínimo necessário para entrar na festa).
 
