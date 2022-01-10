@@ -6,7 +6,7 @@ categories:
   - legislativas 2022
 author:
   - name: JRDANIEL
-    url: https://joaordaniel.github.io/carpintaria/
+    url: https://joaordaniel.github.io/carpintaria/sobre.html
 date: 2022-01-10
 draft: false
 output:
