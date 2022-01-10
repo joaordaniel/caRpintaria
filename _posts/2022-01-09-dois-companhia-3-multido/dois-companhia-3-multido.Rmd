@@ -6,12 +6,14 @@ categories:
   - legislativas 2022
 author:
   - name: JRDANIEL
-    url: https://linktr.ee/j_r_daniel
+    url: https://joaordaniel.github.io/carpintaria/
 date: 2022-01-10
 draft: false
 output:
   distill::distill_article:
     self_contained: false
+repository_url: https://github.com/joaordaniel/carpintaria
+compare_updates_url: https://github.com/joaordaniel/carpintaria/compare/pubv1...master
 ---
 
 
@@ -79,7 +81,9 @@ data3_4 <- setNames(reshape2::melt(data3_4), c('P1', 'P2', 'P3')) %>%
 #previsões consultadas em 2021/01/10
 p <- ggplot(data3_4, aes(P1, P2, fill= P3)) + 
   geom_tile() + theme_minimal() +
-  labs(fill = "% mínima 3º partido")
+  labs(fill = "% mínima 3º partido") +
+  xlab("% PS") +
+  ylab("%PSD: Évora, Bragança e Guarda\nPCP: Beja")
 
 pp <- ggplotly(p) %>%
   layout(
@@ -172,5 +176,6 @@ pp <- ggplotly(p) %>%
 pp
 
 ```
+
 
 

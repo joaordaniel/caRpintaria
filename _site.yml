@@ -14,13 +14,14 @@ collections:
     share: [twitter, linkedin]
     citations: true
     subscribe: _subscribe.html
-    custom: _custom.html
 rss:
   full_content: false
 navbar:
   right:
-    - text: "Home"
+    - text: "Início"
       href: index.html
+    - text: "Sobre"
+      href: sobre.html
     - icon: fa fa-rss
       href: index.xml
   logo:

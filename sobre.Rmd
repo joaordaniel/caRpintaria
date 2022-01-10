@@ -1,0 +1,21 @@
+---
+title: "João R. Daniel"
+image: "images/JD.jpg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/jo%C3%A3o-r-daniel-5a164a211/"
+  - label: Twitter
+    url: "https://twitter.com/j_r_daniel"
+  - label: GitHub
+    url: "https://github.com/joaordaniel"
+  - label: Ko-fi
+    url: "https://ko-fi.com/jrdaniel38137"
+  - label: Instagram
+    url: "https://www.instagram.com/7tree_woodboards/"
+  - label: Google Scholar
+    url: "https://scholar.google.com/citations?user=04_T1VEAAAAJ&hl=pt-PT&oi=sra"
+output:
+  postcards::jolla
+---
+ 
+A torturar dados desde 2004... com sono desde os anos 80.
