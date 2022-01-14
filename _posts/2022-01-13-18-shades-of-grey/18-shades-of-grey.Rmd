@@ -130,16 +130,14 @@ for(i in 1:9){
   maps_list[[i]] <- temp_plot
 }
 
+
+```
+```{r, layout="l-body-outset", preview=TRUE}
 maps_list[[1]]
 maps_list[[2]]
 maps_list[[3]]
 maps_list[[4]]
-```
-```{r, layout="l-body-outset", preview=TRUE}
-library(ggplot2)
 maps_list[[5]]
-```
-```{r, eval=T}
 maps_list[[6]]
 maps_list[[7]]
 maps_list[[8]]
