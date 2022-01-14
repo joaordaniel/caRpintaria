@@ -2,6 +2,9 @@
 title: "18 shades of ..."
 description: |
   Legislativas 2022: Mapas com previsões de voto para Portugal Continental
+categories:
+  - legislativas 2022
+  - infografia
 author:
   - name: JRDANIEL
     orcid_id: 0000-0001-6609-2014
