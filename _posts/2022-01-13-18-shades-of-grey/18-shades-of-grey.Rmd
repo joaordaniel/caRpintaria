@@ -130,9 +130,6 @@ for(i in 1:9){
   maps_list[[i]] <- temp_plot
 }
 
-
-```
-```{r, layout="l-body-outset", preview=TRUE}
 maps_list[[1]]
 maps_list[[2]]
 maps_list[[3]]
