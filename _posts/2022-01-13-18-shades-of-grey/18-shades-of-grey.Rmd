@@ -1,0 +1,147 @@
+---
+title: "18 shades of ..."
+description: |
+  Legislativas 2022: Mapas com previsões de voto para Portugal Continental
+author:
+  - name: JRDANIEL
+    orcid_id: 0000-0001-6609-2014
+date: 2022-01-13
+draft: false
+output:
+  distill::distill_article:
+    self_contained: false
+repository_url: https://github.com/joaordaniel/carpintaria
+compare_updates_url: https://github.com/joaordaniel/carpintaria/compare/pubv1...master
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Previsões: 13/01/2022 - @[intracampus](https://twitter.com/intracampos?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)
+
+%s de voto, por distrito de Portugal continental, por partido 
+
+
+
+```{r, eval=T}
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(rayshader)
+library(bbplot)
+prev <- readr::read_delim("prev.csv", delim = ";", 
+                          escape_double = FALSE, trim_ws = TRUE)
+prev$circ <- gsub("_.*", "", prev$part)
+prev$part <- gsub(".*_", "", prev$part)
+
+nseats <- cbind.data.frame(ns = c(5, 16, 3,	19,	3, 4,	9, 3, 9, 3,	10,	48,	6, 2, 40,	9, 18, 6,	5, 8, 2, 2),
+                           circ = unique(prev$circ))
+
+hondt <- data.frame()
+for(i in 1:length(unique(prev$circ))){
+  circ2 <- unique(prev$circ)[i]
+  seats <- nseats$ns[nseats$circ == circ2]
+  temp <- filter(prev, circ == circ2)
+  temp2 <- cbind.data.frame('Círculo' = circ2,
+                            Votos = rep(temp$val, seats),
+                            Partido = rep(temp$part, seats),
+                            n = rep(1:seats, each = length(unique(prev$part)))) %>%
+    arrange(Partido, n) %>%
+    mutate(Hondt = Votos / n,
+           Partido = toupper(Partido)) %>%
+    arrange(desc(Hondt)) %>%
+    mutate(Ordem = rank(-Hondt),
+           'Elegível' = ifelse(Ordem <= seats, "Sim", "Não")) %>%
+    filter(Elegível == "Sim") %>%
+    group_by(Partido) %>%
+    summarise(Lugares = n()) %>%
+    mutate('Círculo' = circ2)
+   hondt <- rbind.data.frame(hondt, temp2) 
+
+}
+
+hondt <- hondt %>%
+  group_by(Partido) %>%
+  summarise(Lugares = sum(Lugares)) %>%
+  mutate(Partido = sub("PCP", "PCP.PEV", Partido))
+
+hondt$Partido <- factor(hondt$Partido)
+hondt$Lugares <- as.numeric(hondt$Lugares)
+
+
+#MAPAS
+prt1sf <- readRDS("gadm36_PRT_1_sf.rds")
+#nomes1 <- unique(prt1sf$NAME_1)
+
+nomes1 <- unique(prt1sf$NAME_1)
+
+#ficheiro csv c previsões
+mapas <- prev
+names(mapas) <- c("PART", "VOTOS", "NAME_1")
+
+#excluir circulos europa e fora da europa
+mapas <- mapas %>%
+  filter(NAME_1 != "europa" & NAME_1 != "fora")
+
+#homogeneizar nomes dos circulos
+nomes2 <- unique(mapas$NAME_1)
+repl_nomes2 <- c("Azores", "Aveiro", "Beja", "Braga", "Bragança", "Castelo Branco",
+                 "Coimbra", "Évora", "Faro", "Guarda", "Leiria", "Lisboa",
+                 "Madeira", "Portalegre",
+                 "Porto", "Santarém", "Setúbal", "Viana do Castelo", "Vila Real",
+                 "Viseu")
+
+mapas <- mapas %>%
+  mutate(NAME_1 = stringi::stri_replace_all_fixed(NAME_1,
+                                                  nomes2,
+                                                  repl_nomes2,
+                                                  vectorize_all = FALSE))
+
+coords_d4 <- left_join(prt1sf, mapas, by = "NAME_1") 
+colors_p <- cbind.data.frame(part = unique(coords_d4$PART),
+                             cls = c("brown", "blue", "gray1", "gold", "brown2",
+                                     "green4", "red1", "hotpink1", "orange2"))
+
+
+maps_list <- list()
+for(i in 1:9){
+  temp_data <- coords_d4 %>%
+    filter(PART == colors_p$part[i]) %>%
+    mutate(PART = sub("pcp", "pcp.pev", PART),
+           PART = toupper(PART))
+  temp_plot <- ggplot(temp_data) +
+  geom_sf(aes(fill = VOTOS), color = "white") +
+  bbc_style() +
+  coord_sf(ylim = c(37, 42.5), xlim = c(-9.5, -6)) +
+  theme(legend.title = element_text(color = "black"),
+        legend.position = "bottom",
+        plot.title = element_text(hjust = 0, size = 8),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.text = element_text(size=6))+
+    labs(fill = "%") +
+  scale_fill_gradient(low = "seashell1", high = colors_p$cls[i]) +
+  ggtitle(temp_data$PART[1])
+  maps_list[[i]] <- temp_plot
+}
+
+maps_list[[1]]
+maps_list[[2]]
+maps_list[[3]]
+maps_list[[4]]
+```
+```{r, layout="l-body-outset", preview=TRUE}
+library(ggplot2)
+maps_list[[5]]
+```
+```{r, eval=T}
+maps_list[[6]]
+maps_list[[7]]
+maps_list[[8]]
+maps_list[[9]]
+
+```
+
+
