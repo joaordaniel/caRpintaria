@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
 *De que forma uma lista respeita a lei da paridade?* **Não tendo mais de dois candidatos seguidos do mesmo sexo e, no total, não tendo menos de 40%, arredondado para a unidade mais próxima, de cada um dos sexos.** [CNE]("https://www.cne.pt/faq2/99/5")
 
 <br>
-Sai um Waffle com cobertura de (im)paridade...
+Sai um Waffle com cobertura de (im)paridade... 83 / 147 com base nas últimas previsões.
 
 ```{r, eval=T}
 library(dplyr)
@@ -87,3 +87,5 @@ waffle::waffle(w) +
         text=element_text(family = "Helvetica"))
 
 ```
+
+
