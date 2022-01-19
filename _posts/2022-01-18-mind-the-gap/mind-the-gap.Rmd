@@ -1,0 +1,89 @@
+---
+title: "Mind the Gap"
+description: |
+  Divagações sobre (im)paridades...
+categories:
+  - legislativas 2022
+  - infografia
+author:
+  - name: JRDANIEL
+    orcid_id: 0000-0001-6609-2014
+date: 2022-01-18
+draft: false
+output:
+  distill::distill_article:
+    self_contained: false
+repository_url: https://github.com/joaordaniel/carpintaria
+compare_updates_url: https://github.com/joaordaniel/carpintaria/compare/pubv1...master
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+*De que forma uma lista respeita a lei da paridade?* **Não tendo mais de dois candidatos seguidos do mesmo sexo e, no total, não tendo menos de 40%, arredondado para a unidade mais próxima, de cada um dos sexos.** [CNE]("https://www.cne.pt/faq2/99/5")
+
+<br>
+Sai um Waffle com cobertura de (im)paridade...
+
+```{r, eval=T}
+library(dplyr)
+library(ggplot2)
+extrafont::loadfonts(device = "win")
+
+data1 <- readr::read_delim("listasX2.csv", 
+    delim = ";", escape_double = FALSE, locale = readr::locale(encoding = "ISO-8859-1"), 
+    trim_ws = TRUE)
+data1 <- data1[ , 1:5]
+data1 <- rename(data1)
+
+
+prev <- readr::read_delim("prev.csv", delim = ";", 
+                          escape_double = FALSE, trim_ws = TRUE)
+prev$circ <- gsub("_.*", "", prev$part)
+prev$part <- gsub(".*_", "", prev$part)
+
+nseats <- cbind.data.frame(ns = c(5, 16, 3,	19,	3, 4,	9, 3, 9, 3,	10,	48,	6, 2, 40,	9, 18, 6,	5, 8, 2, 2),
+                           circ = unique(prev$circ))
+
+hondt <- data.frame()
+for(i in 1:length(unique(prev$circ))){
+  circ2 <- unique(prev$circ)[i]
+  seats <- nseats$ns[nseats$circ == circ2]
+  temp <- filter(prev, circ == circ2)
+  temp2 <- cbind.data.frame(Circ = circ2,
+                            Votos = rep(temp$val, seats),
+                            Partido = rep(temp$part, seats),
+                            n = rep(1:seats, each = length(unique(prev$part)))) %>%
+    arrange(Partido, n) %>%
+    mutate(Hondt = Votos / n,
+           Partido = toupper(Partido)) %>%
+    arrange(desc(Hondt)) %>%
+    mutate(Ordem = rank(-Hondt),
+           'Elegível' = ifelse(Ordem <= seats, "Sim", "Não")) %>%
+    group_by(Partido) %>%
+    mutate(Ordem2 = rank(-Hondt)) %>%
+    ungroup()
+  hondt <- rbind.data.frame(hondt, temp2)
+  
+}
+
+hondt <- hondt %>%
+  filter(Elegível == "Sim") %>%
+  select(-Elegível) %>%
+  mutate(Circ = sub("vila", "vila_r", Circ),
+         Circ = sub("viana", "viana_c", Circ),
+         Circ = sub("brakanca", "braKanca", Circ),
+         Circ = sub("castelo", "castelo_b", Circ)) %>% 
+  left_join(data1, by = c("Partido", "Ordem2", "Circ")) %>%
+  select(-c(Candidato, n, Hondt, Ordem, Ordem2)) %>%
+  mutate(Partido = sub("PCP", "PCP.PEV", Partido))
+
+w <- table(hondt$Gend)
+waffle::waffle(w) +
+  labs(caption="Source: caRpintaria\nprevisões 18/01/2022\n@intracampos / paragrafo") +
+  theme(legend.title = element_blank(),
+        legend.position = "none",
+        text=element_text(family = "Helvetica"))
+
+```

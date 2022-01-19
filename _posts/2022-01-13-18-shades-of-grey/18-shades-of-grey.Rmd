@@ -22,7 +22,7 @@ compare_updates_url: https://github.com/joaordaniel/carpintaria/compare/pubv1...
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Previsões: 13/01/2022 - @[intracampus](https://twitter.com/intracampos?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)
+Previsões: 18/01/2022 - @[intracampos](https://twitter.com/intracampos?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)
 
 %s de voto, por distrito de Portugal continental, por partido 
 
@@ -34,6 +34,7 @@ library(dplyr)
 library(ggplot2)
 library(rayshader)
 library(bbplot)
+
 prev <- readr::read_delim("prev.csv", delim = ";", 
                           escape_double = FALSE, trim_ws = TRUE)
 prev$circ <- gsub("_.*", "", prev$part)

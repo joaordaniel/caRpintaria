@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2022-01-18-mind-the-gap/",
+    "title": "Mind the Gap",
+    "description": "Divagações sobre (im)paridades...",
+    "author": [
+      {
+        "name": "JRDANIEL",
+        "url": {}
+      }
+    ],
+    "date": "2022-01-18",
+    "categories": [
+      "legislativas 2022",
+      "infografia"
+    ],
+    "contents": "\r\nDe que forma uma lista respeita a lei da paridade? Não tendo mais de dois candidatos seguidos do mesmo sexo e, no total, não tendo menos de 40%, arredondado para a unidade mais próxima, de cada um dos sexos. CNE\r\n Sai um Waffle com cobertura de (im)paridade…\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "posts/2022-01-18-mind-the-gap/mind-the-gap_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2022-01-19T00:26:36+00:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2022-01-13-18-shades-of-grey/",
     "title": "18 shades of ...",
     "description": "Legislativas 2022: Mapas com previsões de voto para Portugal Continental",
@@ -14,9 +36,9 @@
       "legislativas 2022",
       "infografia"
     ],
-    "contents": "\r\nPrevisões: 13/01/2022 - @intracampus\r\n%s de voto, por distrito de Portugal continental, por partido\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\nPrevisões: 18/01/2022 - @intracampos\r\n%s de voto, por distrito de Portugal continental, por partido\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": "posts/2022-01-13-18-shades-of-grey/18-shades-of-grey_files/figure-html5/unnamed-chunk-1-1.png",
-    "last_modified": "2022-01-14T00:39:00+00:00",
+    "last_modified": "2022-01-19T00:24:58+00:00",
     "input_file": {},
     "preview_width": 1248,
     "preview_height": 768
