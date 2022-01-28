@@ -1,0 +1,109 @@
+---
+title: "Bellwethers Legislativas 2019 - 2022"
+description: |
+  Diferenças absolutas entre resultados Nacionais e resultados ao nível da Freguesia - 2019
+categories:
+  - legislativas 2022
+author:
+  - name: JRDANIEL
+    orcid_id: 0000-0001-6609-2014
+date: 2022-01-28
+draft: false
+output:
+  distill::distill_article:
+    self_contained: false
+repository_url: https://github.com/joaordaniel/carpintaria
+compare_updates_url: https://github.com/joaordaniel/carpintaria/compare/pubv1...master
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Diferenças absolutas por partido (assento parlamentar), e por freguesia, entre resultados nacionais e 
+resultados locais. Valores = 0 indicam igualdade entre resultado na freguesia e o resultado do partido a nível nacional. Um valor = 5, por exemplo, indica que o partido teve +/- 5% que o resultado a nível nacional. Média = desvios absolutos médios dos diferentes partidos para cada freguesia.
+
+As colunas podem ser ordenadas, expandidas, e fitradas por concelho e freguesia.\n
+
+```{r, eval=T}
+
+
+
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(reactable)
+
+nacional <- read_delim("nacional.csv", delim = ";", 
+                       escape_double = FALSE, locale = locale(encoding = "ISO-8859-1"), 
+                       trim_ws = TRUE) %>%
+  rename(percentage_nac = percentage)
+
+fregs <- read_csv("freg_leg1519.csv", 
+                  locale = locale(encoding = "ISO-8859-1"))
+
+fregs2 <- fregs %>%
+  filter(ano == 2019) %>%
+  filter(acronym %in% c("PS", "PPD/PSD", "B.E.",
+                        "CDS-PP", "PAN", "PCP-PEV",
+                        "CH", "L", "IL")) %>%
+  left_join(nacional, by = "acronym") %>%
+  mutate(abs_dif1 = abs(percentage - percentage_nac)) %>%
+  group_by(codigo) %>%
+  mutate(abs_dif2 = mean(abs_dif1)) %>%
+  ungroup() %>%
+  mutate(abs_dif1 = round(abs_dif1, digits = 2),
+         abs_dif2 = round(abs_dif2, digits = 2))
+
+fregs3 <- fregs2 %>%
+  select(conc, codigo, freg, acronym, abs_dif1, abs_dif2) %>%
+  pivot_wider(names_from = "acronym", values_from = "abs_dif1") %>%
+  arrange(abs_dif2) %>%
+  rename(Concelho = conc,
+         ID = codigo,
+         Freguesia = freg,
+         Média = abs_dif2,
+         PSD = `PPD/PSD`,
+         BE = B.E.,
+         CDS = `CDS-PP`,
+         PCP.PEV = `PCP-PEV`) %>%
+  select(-ID) %>%
+  select(Concelho, Freguesia, Média, BE, PCP.PEV, L, PS, PAN, PSD, CDS, IL, CH)
+
+
+orange_pal <- function(x) rgb(colorRamp(c("#E9F8CB", "#4AB8AB"))(x), maxColorValue = 255)
+
+
+reactable(fregs3, showSortIcon = T,
+          filterable = FALSE, 
+          columns = list(
+            Concelho = colDef(filterable = TRUE, maxWidth = 150),
+            Freguesia = colDef(filterable = TRUE, maxWidth = 150),
+            Média = colDef(maxWidth = 100,
+                               style = function(value) {
+                                 normalized <- (value - min(fregs3$Média)) / (max(fregs3$Média) - min(fregs3$Média))
+                                 color <- orange_pal(normalized)
+                                 list(background = color)
+            }),
+            PS = colDef(maxWidth = 50),
+            PSD = colDef(maxWidth = 50),
+            BE = colDef(maxWidth = 50),
+            IL = colDef(maxWidth = 50),
+            CH = colDef(maxWidth = 50),
+            L = colDef(maxWidth = 50),
+            CDS = colDef(maxWidth = 50),
+            PCP.PEV = colDef(maxWidth = 100),
+            PAN = colDef(maxWidth = 50)
+            
+          ),
+          defaultPageSize = 20,
+          highlight = TRUE, 
+          borderless = TRUE,
+          compact = TRUE,
+          wrap = FALSE,
+          resizable = TRUE,
+          fullWidth = FALSE
+        )
+```
